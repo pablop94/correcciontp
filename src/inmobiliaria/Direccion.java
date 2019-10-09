@@ -5,8 +5,8 @@ public class Direccion {
 	private String calle;
 	private int numeracion;
 
-	public Direccion(String calleTano, int numeracion) {
-		this.calleTano = calle;
+	public Direccion(String calle, int numeracion) {
+		this.calle = calle;
 		this.numeracion = numeracion;
 	}
 
