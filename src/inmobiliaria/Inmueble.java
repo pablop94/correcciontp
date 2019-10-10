@@ -15,4 +15,20 @@ public class Inmueble {
 		this.direccion = direccion;
 		this.servicios = servicios;
 	}
+
+	public String getPais() {
+		return this.pais;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public Direccion getDireccion() {
+		return this.direccion;
+	}
+
+	public List<Servicio> getServicios() {
+		return this.servicios;
+	}
 }

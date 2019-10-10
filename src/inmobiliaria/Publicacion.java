@@ -1,16 +1,16 @@
 package inmobiliaria;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Publicacion {
 
 	private Inmueble inmueble;
 	private int capacidad;
-	private Date checkIn;
-	private Date checkOut;
+	private LocalDate checkIn;
+	private LocalDate checkOut;
 	private double precio;
 	
-	public Publicacion(Inmueble inmueble, int capacidad, Date checkIn, Date checkOut, double precio) {
+	public Publicacion(Inmueble inmueble, int capacidad, LocalDate checkIn, LocalDate checkOut, double precio) {
 		this.inmueble = inmueble;
 		this.capacidad = capacidad;
 		this.checkIn = checkIn;
@@ -18,8 +18,24 @@ public class Publicacion {
 		this.precio = precio;
 	}
 
-	public Publicacion() {
-		// TODO Auto-generated constructor stub
+	public Inmueble getInmueble() {
+		return this.inmueble;
 	}
 
+	public int getCapacidad() {
+		return this.capacidad;
+	}
+
+	public double getPrecio() {
+		return this.precio;
+	}
+
+	public LocalDate getCheckIn() {
+		return checkIn;
+	}
+	
+	public LocalDate getCheckOut() {
+		return checkOut;
+	}
+	
 }
