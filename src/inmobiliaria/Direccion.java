@@ -1,7 +1,7 @@
 package inmobiliaria;
 
 public class Direccion {
-	
+
 	private String calle;
 	private int numeracion;
 
@@ -10,5 +10,12 @@ public class Direccion {
 		this.numeracion = numeracion;
 	}
 
-	
+	public String getCalle() {
+		return calle;
+	}
+
+	public int getNumeracion() {
+		return numeracion;
+	}
+
 }

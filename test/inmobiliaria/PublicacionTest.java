@@ -18,15 +18,22 @@ class PublicacionTest {
 	private Sitio sitio;
 	private Inmueble inmueble;
 	private List<Servicio> servicios;
+	private List<Servicio> serviciosDelInmueble;
 	private Direccion direccion;
+	private LocalDate checkIn;
+	private LocalDate checkOut;
+
 	
 	@BeforeEach
 	void setUp() {
 		sitio = new Sitio();
-		direccion = new Direccion("Oliveri", 1111);
-		inmueble = new Inmueble("Argentina", "Quilmes", direccion, sitio.getServicios());
-		publicacion = new Publicacion(inmueble, 4, LocalDate.of(2019, Month.SEPTEMBER, 25), LocalDate.of(2019, Month.OCTOBER, 10), 10000d);
+		serviciosDelInmueble = new ArrayList<Servicio>();
 		servicios = new ArrayList<Servicio>();
+		direccion = new Direccion("Oliveri", 1111);
+		inmueble = new Inmueble("Argentina", "Quilmes", direccion, serviciosDelInmueble);
+		LocalDate checkIn =  LocalDate.of(2019, Month.SEPTEMBER, 25);
+		LocalDate checkOut =  LocalDate.of(2019, Month.OCTOBER, 10);
+		publicacion = new Publicacion(inmueble, 4, LocalDate.of(2019, Month.SEPTEMBER, 25), LocalDate.of(2019, Month.OCTOBER, 10), 10000d);
 	}
 	
 	
@@ -58,8 +65,9 @@ class PublicacionTest {
 		sitio.administradorDeSitio.crearServicio("Wi-fi");
 		assertEquals(inmueble.getPais(), "Argentina");
 		assertEquals(inmueble.getCiudad(), "Quilmes"); 
-		assertEquals(inmueble.getDireccion(), direccion); //se podria preguntar a direccion getCalle() o getNumeracion() pero quizas es demasiado
-		assertEquals(inmueble.getServicios(), sitio.getServicios()); //sitio tiene la lista de servicios, no todos los inmuebles van a tener los mismos
+		assertEquals(inmueble.getDireccion().getCalle(), direccion.getCalle()); //se podria preguntar a direccion getCalle() o getNumeracion() pero quizas es demasiado
+		assertEquals(inmueble.getDireccion().getNumeracion(), direccion.getNumeracion()); //se podria preguntar a direccion getCalle() o getNumeracion() pero quizas es demasiado
+		assertEquals(inmueble.getServicios(), serviciosDelInmueble); 
 	}
 	
 	@Test
@@ -73,8 +81,5 @@ class PublicacionTest {
 		
 	}
 	
-	@Test
-	void testReservarPublicacion() {
-		
-	}
+
 }

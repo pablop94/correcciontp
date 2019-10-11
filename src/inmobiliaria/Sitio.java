@@ -8,11 +8,13 @@ public class Sitio {
 	private List<Publicacion> publicaciones;
 	private List<Servicio> servicios;
 	public AdministradorDeSitio administradorDeSitio;
+	public AdministradorDeReservas administradorDeReservas;
 
 	public Sitio() {
 		super();
 		this.publicaciones = new ArrayList<Publicacion>();
 		this.administradorDeSitio = new AdministradorDeSitio(this);
+		this.administradorDeReservas = new AdministradorDeReservas(this);
 		this.servicios = new ArrayList<Servicio>();
 	}
 
