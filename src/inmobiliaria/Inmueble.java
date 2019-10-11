@@ -8,6 +8,7 @@ public class Inmueble {
 	private String ciudad;
 	private Direccion direccion;
 	private List<Servicio> servicios;
+	private Propietario propietario;
 	
 	public Inmueble(String pais, String ciudad, Direccion direccion, List<Servicio> servicios) {
 		this.pais = pais;

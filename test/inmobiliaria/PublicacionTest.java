@@ -19,6 +19,8 @@ class PublicacionTest {
 	private Inmueble inmueble;
 	private List<Servicio> servicios;
 	private Direccion direccion;
+	private PosibleInquilino posibleInquilino;
+	private Propietario propietario;
 	
 	@BeforeEach
 	void setUp() {
@@ -27,6 +29,8 @@ class PublicacionTest {
 		inmueble = new Inmueble("Argentina", "Quilmes", direccion, sitio.getServicios());
 		publicacion = new Publicacion(inmueble, 4, LocalDate.of(2019, Month.SEPTEMBER, 25), LocalDate.of(2019, Month.OCTOBER, 10), 10000d);
 		servicios = new ArrayList<Servicio>();
+		posibleInquilino = new PosibleInquilino("maxi", "maxi@unq.com", "1123432332", LocalDate.of(2019, Month.APRIL, 12 ));
+		propietario = new Propietario("Jorege", "Jorge@unq.com", "1145545444", LocalDate.of(2018, Month.AUGUST, 19 ));
 	}
 	
 	
@@ -73,8 +77,9 @@ class PublicacionTest {
 		
 	}
 	
+	
 	@Test
 	void testReservarPublicacion() {
-		
+		assertEquals()
 	}
 }
