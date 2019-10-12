@@ -10,5 +10,12 @@ public class Direccion {
 		this.numeracion = numeracion;
 	}
 
+	public String getCalle() {
+		return calle;
+	}
+
+	public int getNumeracion() {
+		return numeracion;
+	}
 	
 }

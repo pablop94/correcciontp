@@ -4,66 +4,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import inmobiliaria.Sitio;
+import static org.mockito.Mockito.*;
 
 class PublicacionTest {
 	
 	private Publicacion publicacion;
-	private Sitio sitio;
 	private Inmueble inmueble;
-	private List<Servicio> servicios;
-	private Direccion direccion;
 	private PosibleInquilino posibleInquilino;
 	private Propietario propietario;
 	
 	@BeforeEach
 	void setUp() {
-		sitio = new Sitio();
-		direccion = new Direccion("Oliveri", 1111);
-		inmueble = new Inmueble("Argentina", "Quilmes", direccion, sitio.getServicios());
+		inmueble = mock(Inmueble.class);
 		publicacion = new Publicacion(inmueble, 4, LocalDate.of(2019, Month.SEPTEMBER, 25), LocalDate.of(2019, Month.OCTOBER, 10), 10000d);
-		servicios = new ArrayList<Servicio>();
 		posibleInquilino = new PosibleInquilino("maxi", "maxi@unq.com", "1123432332", LocalDate.of(2019, Month.APRIL, 12 ));
 		propietario = new Propietario("Jorege", "Jorge@unq.com", "1145545444", LocalDate.of(2018, Month.AUGUST, 19 ));
-	}
-	
-	
-	@Test
-	void cuandoCreoUnaPublicacionSeAgregaAlSitio() {
-		assertEquals(sitio.getPublicaciones().size(), 0);
-		sitio.agregarPublicacion(publicacion);
-		assertEquals(sitio.getPublicaciones().size(), 1);
-	}
-	
-	@Test
-	void cuandoEliminoUnaPublicacionDesapareceDelSitio() {
-		assertEquals(sitio.getPublicaciones().size(), 0);
-		sitio.agregarPublicacion(publicacion);
-		assertEquals(sitio.getPublicaciones().size(), 1);
-		sitio.eliminarPublicacion(publicacion);
-		assertEquals(sitio.getPublicaciones().size(), 0);
-	}
-	
-	@Test
-	void comoAdministradorDeSitioPuedoAgregarServiciosAlSitio() {
-		assertEquals(sitio.getServicios().size(), 0);
-		sitio.administradorDeSitio.crearServicio("Wi-fi");
-		assertEquals(sitio.getServicios().stream().findFirst().get().getName(), "Wi-fi");
-	}
-	
-	@Test
-	void testConstructorInmueble() {
-		sitio.administradorDeSitio.crearServicio("Wi-fi");
-		assertEquals(inmueble.getPais(), "Argentina");
-		assertEquals(inmueble.getCiudad(), "Quilmes"); 
-		assertEquals(inmueble.getDireccion(), direccion); //se podria preguntar a direccion getCalle() o getNumeracion() pero quizas es demasiado
-		assertEquals(inmueble.getServicios(), sitio.getServicios()); //sitio tiene la lista de servicios, no todos los inmuebles van a tener los mismos
 	}
 	
 	@Test
@@ -77,9 +36,5 @@ class PublicacionTest {
 		
 	}
 	
-	
-	@Test
-	void testReservarPublicacion() {
-		assertEquals()
-	}
+
 }

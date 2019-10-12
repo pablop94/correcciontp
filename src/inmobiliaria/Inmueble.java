@@ -32,4 +32,13 @@ public class Inmueble {
 	public List<Servicio> getServicios() {
 		return this.servicios;
 	}
+
+	public Propietario getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+	
 }
