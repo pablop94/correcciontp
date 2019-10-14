@@ -12,7 +12,7 @@ class AdministradorDeSitioTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		sitio = new Sitio();
+		sitio = Sitio.getInstance();
 		administradorDeSitio = new AdministradorDeSitio(sitio);
 	}
 

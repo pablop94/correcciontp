@@ -14,7 +14,7 @@ class SitioTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		sitio = new Sitio();
+		sitio = Sitio.getInstance();
 		publicacion = mock(Publicacion.class);
 	}
 
