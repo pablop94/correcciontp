@@ -1,6 +1,10 @@
 package inmobiliaria;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BooleanSupplier;
+import java.util.stream.Collectors;
 
 public class Publicacion { // Clase nueva
 
@@ -9,8 +13,7 @@ public class Publicacion { // Clase nueva
 	private LocalDate checkIn;
 	private LocalDate checkOut;
 	private double precio;
-	private PosibleInquilino posibleInquilino; //se puede cambiar por un array para que en ves de que solo tenga un posible inquilino, tenga barios a la ves y el propietario decida a cual alquilarsela
-	private Propietario DueñoPublicacion;
+	private List<Reserva> reservas;
 	
 	public Publicacion(Inmueble inmueble, int capacidad, LocalDate checkIn, LocalDate checkOut, double precio) {
 		this.inmueble = inmueble;
@@ -18,6 +21,7 @@ public class Publicacion { // Clase nueva
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.precio = precio;
+		this.reservas = new ArrayList<Reserva>();
 	}
 
 	public Inmueble getInmueble() {
@@ -38,14 +42,27 @@ public class Publicacion { // Clase nueva
 	
 	public LocalDate getCheckOut() {
 		return checkOut;
+	}		
+
+	public Reserva agregarReserva(Reserva reserva) {
+		this.reservas.add(reserva);
+		return reserva;
 	}
 	
-	public void setPosibleinquilino(PosibleInquilino pi) {
-		this.posibleInquilino = pi;
+	public List<Reserva> getReservas() {
+		return this.reservas;
 	}
-	
-	public void notificacionDePosibleAlquiler(Propietario DueñoPublicacion) {
-		DueñoPublicacion.agregarAlDic(posibleInquilino, this);
+
+	public Propietario getPropietario() {
+		return this.getInmueble().getPropietario();
 	}
-	
+
+	public Boolean puedeReservarseEn(LocalDate checkIn, LocalDate checkOut) {
+		List<Boolean> collect = this.getReservas().stream().filter(reserva -> reserva.estaAceptada()).map(reserva -> this.tieneReservasPara(checkIn, checkOut, reserva)).collect(Collectors.toList());
+		return (!collect.contains(true));
+	}
+
+	private Boolean tieneReservasPara(LocalDate checkIn, LocalDate checkOut, Reserva reserva) {
+		return (checkIn.isBefore(reserva.getCheckOut()) && reserva.getCheckIn().isBefore(checkOut));
+	}
 }

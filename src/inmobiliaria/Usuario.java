@@ -4,6 +4,14 @@ import java.time.LocalDate;
 
 public abstract class Usuario { // Clase nueva
 
+	public Usuario(String nombre, String email, String telefono, LocalDate fechaCreacion) {
+		super();
+		this.nombre = nombre;
+		this.email = email;
+		this.telefono = telefono;
+		this.fechaCreacion = fechaCreacion;
+	}
+	
 	protected String nombre;
 	protected String email;
 	protected String telefono;

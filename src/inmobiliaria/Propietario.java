@@ -9,17 +9,19 @@ public class Propietario extends Usuario{ //Clase nueva
 	
 	
 	public Propietario(String nombre, String email, String telefono, LocalDate fechaCreacion) {
-		Map<Publicacion,PosibleInquilino> propiedadesEnAlquiler = new HashMap<Publicacion, PosibleInquilino>();
-		this.email = email;
-		this.fechaCreacion = fechaCreacion;
-		this.nombre = nombre;
-		this.telefono = telefono;
+		super(nombre, email, telefono, fechaCreacion);
+		Map<Publicacion,Inquilino> propiedadesEnAlquiler = new HashMap<Publicacion, Inquilino>();
 	}
 	
-	public void agregarAlDic(PosibleInquilino pi, Publicacion publi) {
+	public void agregarAlDic(Inquilino pi, Publicacion publi) {
 		this.propiedadesEnAlquiler.put(pi, publi);
 	}
-	
-	
+
+	public void notificarReservaPendiente(Reserva nuevaReserva) {
+		Sitio.getInstance().getServidorMail().enviarMail(this.getEmail(), 
+				"Tenes una nueva reserva!", 
+				"El usuario " + nuevaReserva.getInquilino().getNombre() + 
+				" ha realizado una reserva en tu inmueble");
+	}
 
 }
