@@ -8,6 +8,12 @@ import java.time.Month;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import publicacion.Inmueble;
+import publicacion.Publicacion;
+import sitio.Reserva;
+import usuario.Inquilino;
+import usuario.Propietario;
+
 import static org.mockito.Mockito.*;
 
 class PublicacionTest {
@@ -36,6 +42,7 @@ class PublicacionTest {
 		nuevaReserva3 = mock(Reserva.class);
 		propietario = mock(Propietario.class);
 		inquilino = mock(Inquilino.class);
+		
 		checkInPublicacion = LocalDate.of(2019, Month.SEPTEMBER, 25);
 		checkOutPublicacion = LocalDate.of(2019, Month.OCTOBER, 5);
 		checkInReserva1 = LocalDate.of(2019, Month.SEPTEMBER, 25);
@@ -44,15 +51,19 @@ class PublicacionTest {
 		checkOutReserva2 = LocalDate.of(2019, Month.OCTOBER, 5);
 		checkInReserva3 = LocalDate.of(2019, Month.SEPTEMBER, 29);
 		checkOutReserva3 = LocalDate.of(2019, Month.OCTOBER, 2);
+		
 		when(nuevaReserva.getCheckIn()).thenReturn(checkInReserva1);
 		when(nuevaReserva.getCheckOut()).thenReturn(checkOutReserva1);
 		when(nuevaReserva.estaAceptada()).thenReturn(true);
+		
 		when(nuevaReserva2.getCheckIn()).thenReturn(checkInReserva2);
 		when(nuevaReserva2.getCheckOut()).thenReturn(checkOutReserva2);
 		when(nuevaReserva2.estaAceptada()).thenReturn(true);
+		
 		when(nuevaReserva3.getCheckIn()).thenReturn(checkInReserva3);
 		when(nuevaReserva3.getCheckOut()).thenReturn(checkOutReserva3);
 		when(nuevaReserva3.estaAceptada()).thenReturn(true);
+		
 		publicacion = new Publicacion(inmueble, 4, checkInPublicacion, checkOutPublicacion, 10000d);
 	}
 	
@@ -68,6 +79,7 @@ class PublicacionTest {
 	
 	@Test
 	void cuandoAceptoUnaReservaNoQuieroPoderReservarNuevamenteParaEsasMismasFechas() {
+		assertTrue(publicacion.puedeReservarseEn(checkInReserva1, checkOutReserva1));
 		publicacion.agregarReserva(nuevaReserva);
 		assertFalse(publicacion.puedeReservarseEn(checkInReserva1, checkOutReserva1));
 		assertTrue(publicacion.puedeReservarseEn(checkInReserva2, checkOutReserva2));

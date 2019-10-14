@@ -1,6 +1,9 @@
-package inmobiliaria;
+package sitio;
 
 import java.time.LocalDate;
+
+import publicacion.Publicacion;
+import usuario.Inquilino;
 
 public class Reserva {
 	private Publicacion publicacion;
@@ -60,7 +63,5 @@ public class Reserva {
 		this.estaAceptada = true;
 		this.getInquilino().notificarReservaConcretada(this);
 	}
-
-
 	
 }

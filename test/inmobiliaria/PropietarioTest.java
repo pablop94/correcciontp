@@ -9,6 +9,11 @@ import java.time.Month;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import publicacion.Publicacion;
+import sitio.Reserva;
+import usuario.Inquilino;
+import usuario.Propietario;
+
 class PropietarioTest {
     
 	LocalDate fechaCreacion;
@@ -35,7 +40,5 @@ class PropietarioTest {
 		assertEquals(propietario.getTelefono(), "+5411931294");
 		assertEquals(propietario.getFechaCreacion(), fechaCreacion);
 	}
-	
-
-	
+		
 }

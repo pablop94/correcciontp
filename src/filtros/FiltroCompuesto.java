@@ -1,7 +1,9 @@
-package inmobiliaria;
+package filtros;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import publicacion.Publicacion;
 
 public class FiltroCompuesto extends Filtro {
 	

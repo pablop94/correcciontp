@@ -5,8 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import publicacion.Direccion;
+import publicacion.Inmueble;
+import publicacion.Servicio;
+import usuario.Propietario;
 
 class InmuebleTest {
 
@@ -17,6 +23,7 @@ class InmuebleTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		propietario = mock(Propietario.class);
 		direccion = new Direccion("Calle", 1212);
 		servicios = new ArrayList<Servicio>();
 		inmueble = new Inmueble("Argentina", "Quilmes", direccion, servicios);
@@ -28,6 +35,8 @@ class InmuebleTest {
 		assertEquals(inmueble.getCiudad(), "Quilmes"); 
 		assertEquals(inmueble.getDireccion(), direccion);
 		assertEquals(inmueble.getServicios().size(), 0);
+		inmueble.setPropietario(propietario);
+		assertEquals(inmueble.getPropietario(), propietario);
 	}
 	
 }

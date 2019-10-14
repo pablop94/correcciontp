@@ -1,14 +1,16 @@
-package inmobiliaria;
+package filtros;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import publicacion.Publicacion;
+
 public class CheckIn extends Filtro {
 
 	private LocalDate checkIn;
 	
-		public CheckIn(LocalDate checkIn) {
+	public CheckIn(LocalDate checkIn) {
 		super();
 		this.checkIn = checkIn;
 	}

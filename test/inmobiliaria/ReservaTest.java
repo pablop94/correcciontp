@@ -4,11 +4,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import publicacion.Publicacion;
+import sitio.Reserva;
+import usuario.Inquilino;
+import usuario.Propietario;
+
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.List;
 
 class ReservaTest {
 	
@@ -18,14 +23,12 @@ class ReservaTest {
 	private Inquilino inquilino;
 	private LocalDate checkIn;
 	private LocalDate checkOut;
-	private String formaDePago;
 	
 	@BeforeEach
 	public void setUp() throws Exception {
 		propietario = mock(Propietario.class);
 		publicacion = mock(Publicacion.class);
 		inquilino = mock(Inquilino.class);
-		formaDePago = "Tarjeta"; 
 		checkIn = LocalDate.of(2019, Month.SEPTEMBER, 25);
 		checkOut = LocalDate.of(2019, Month.SEPTEMBER, 29);
 		when(publicacion.getPropietario()).thenReturn(propietario);

@@ -1,8 +1,10 @@
-package inmobiliaria;
+package filtros;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import publicacion.Publicacion;
 
 public class CheckOut extends Filtro {
 
@@ -15,7 +17,7 @@ public class CheckOut extends Filtro {
 
 	@Override
 	public List<Publicacion> filtrarPublicaciones() {
-		return this.copiaPublicaciones.stream().filter(publicacion -> publicacion.getCheckIn().equals(this.checkOut)).collect(Collectors.toList());
+		return this.copiaPublicaciones.stream().filter(publicacion -> publicacion.getCheckOut().equals(this.checkOut)).collect(Collectors.toList());
 	}
 
 }

@@ -1,7 +1,9 @@
-package inmobiliaria;
+package filtros;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import publicacion.Publicacion;
 
 public class Ciudad extends Filtro {
 	

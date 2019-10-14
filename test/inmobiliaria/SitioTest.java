@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import publicacion.Publicacion;
+import sitio.Sitio;
+
 import static org.mockito.Mockito.*;
 
 class SitioTest {
