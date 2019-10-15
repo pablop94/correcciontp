@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import publicacion.Inmueble;
-import sitio.Reserva;
+import publicacion.Reserva;
 import sitio.Sitio;
 
 public class Propietario extends Usuario{
@@ -19,6 +19,10 @@ public class Propietario extends Usuario{
 
 	public void agregarInmueble(Inmueble inmueble) {
 		this.inmuebles.add(inmueble);
+	}
+	
+	public List<Inmueble> getInmuebles() {
+		return this.inmuebles;
 	}
 	
 	public void notificarReservaPendiente(Reserva nuevaReserva) {

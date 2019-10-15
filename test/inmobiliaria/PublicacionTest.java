@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import publicacion.Inmueble;
 import publicacion.Publicacion;
-import sitio.Reserva;
-import usuario.Inquilino;
-import usuario.Propietario;
+import publicacion.Reserva;
 
 import static org.mockito.Mockito.*;
 
@@ -20,7 +18,6 @@ class PublicacionTest {
 	
 	private Publicacion publicacion;
 	private Inmueble inmueble;
-	private Inquilino inquilino;
 	private LocalDate checkInPublicacion;
 	private LocalDate checkOutPublicacion;
 	private LocalDate checkInReserva1;
@@ -29,7 +26,6 @@ class PublicacionTest {
 	private LocalDate checkOutReserva2;
 	private LocalDate checkInReserva3;
 	private LocalDate checkOutReserva3;
-	private Propietario propietario;
 	private Reserva nuevaReserva;
 	private Reserva nuevaReserva2;
 	private Reserva nuevaReserva3;
@@ -40,8 +36,6 @@ class PublicacionTest {
 		nuevaReserva = mock(Reserva.class);
 		nuevaReserva2 = mock(Reserva.class);
 		nuevaReserva3 = mock(Reserva.class);
-		propietario = mock(Propietario.class);
-		inquilino = mock(Inquilino.class);
 		
 		checkInPublicacion = LocalDate.of(2019, Month.SEPTEMBER, 25);
 		checkOutPublicacion = LocalDate.of(2019, Month.OCTOBER, 5);

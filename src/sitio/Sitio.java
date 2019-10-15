@@ -11,14 +11,14 @@ public class Sitio {
 	private List<Publicacion> publicaciones;
 	private List<Servicio> servicios;
 	private ServidorMail servidorMail;
-    private static Sitio sitio;
     public AdministradorDeSitio administradorDeSitio;
+	private static Sitio sitio;
     
 	public Sitio(ServidorMail servidor) {
 		this.servidorMail = servidor;
 	}
 	
-	private Sitio() {
+	public Sitio() {
 		super();
 		this.publicaciones = new ArrayList<Publicacion>();
 		this.administradorDeSitio = new AdministradorDeSitio(this);
@@ -29,8 +29,7 @@ public class Sitio {
         if (sitio == null){
             sitio = new Sitio();
         }
-        
-        return sitio;
+        return Sitio.sitio;
 	}
 	
 	public ServidorMail getServidorMail() {
@@ -41,12 +40,8 @@ public class Sitio {
 		return this.publicaciones;
 	}
 
-	public void setPublicaciones(List<Publicacion> publicaciones) {
-		this.publicaciones = publicaciones;
-	}
-
 	public void agregarPublicacion(Publicacion publicacion) {
-		this.publicaciones.add(publicacion);
+			this.publicaciones.add(publicacion);
 	}
 
 

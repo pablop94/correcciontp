@@ -12,11 +12,12 @@ public class Inmueble {
 	private List<Servicio> servicios;
 	private Propietario propietario;
 	
-	public Inmueble(String pais, String ciudad, Direccion direccion, List<Servicio> servicios) {
+	public Inmueble(String pais, String ciudad, Direccion direccion, List<Servicio> servicios, Propietario propietario) {
 		this.pais = pais;
 		this.ciudad = ciudad;
 		this.direccion = direccion;
 		this.servicios = servicios;
+		this.setPropietario(propietario);
 	}
 
 	public String getPais() {

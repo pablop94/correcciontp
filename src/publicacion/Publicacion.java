@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import sitio.Reserva;
 import usuario.Propietario;
 
 public class Publicacion {
@@ -68,4 +67,11 @@ public class Publicacion {
 		return (checkIn.isBefore(reserva.getCheckOut()) && reserva.getCheckIn().isBefore(checkOut));
 	}
 	
+//	public Boolean estaDentroDelCheckIn(LocalDate check) {
+//		return (this.getCheckIn().isBefore(check) || this.getCheckIn().isEqual(check)) && check.isBefore(this.getCheckOut());
+//	}
+//	
+//	public Boolean estaDentroDelCheckOut(LocalDate check) {
+//		return (this.getCheckOut().isAfter(check) || this.getCheckOut().isEqual(check)) && check.isAfter(this.getCheckIn());
+//	}
 }

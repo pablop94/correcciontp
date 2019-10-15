@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import sitio.Reserva;
+import publicacion.Reserva;
 import sitio.Sitio;
 
 public class Inquilino extends Usuario {

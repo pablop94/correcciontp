@@ -16,8 +16,9 @@ public class CheckOut extends Filtro {
 	}
 
 	@Override
-	public List<Publicacion> filtrarPublicaciones() {
-		return this.copiaPublicaciones.stream().filter(publicacion -> publicacion.getCheckOut().equals(this.checkOut)).collect(Collectors.toList());
+	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
+		publicaciones = publicaciones.stream().filter(publicacion -> publicacion.getCheckOut().isEqual(this.checkOut)).collect(Collectors.toList());
+		return publicaciones;
 	}
 
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import publicacion.Publicacion;
-import sitio.Reserva;
+import publicacion.Reserva;
 import usuario.Inquilino;
 import usuario.Propietario;
 

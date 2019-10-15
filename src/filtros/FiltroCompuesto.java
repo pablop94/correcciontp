@@ -13,15 +13,16 @@ public class FiltroCompuesto extends Filtro {
 		super();
 		this.filtros = new ArrayList<Filtro>();
 	}
+	
 	@Override
-	public List<Publicacion> filtrarPublicaciones() {
+	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
 		for (Filtro unFiltro: this.getFiltros()) {
-			this.copiaPublicaciones = unFiltro.filtrarPublicaciones();
+			publicaciones = unFiltro.filtrarPublicaciones(publicaciones);
 		}
-		return copiaPublicaciones;
+		return publicaciones;
 	}
 
-	private List<Filtro> getFiltros() {
+	public List<Filtro> getFiltros() {
 		return this.filtros;
 	}
 	

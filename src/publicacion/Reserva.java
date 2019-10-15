@@ -1,8 +1,7 @@
-package sitio;
+package publicacion;
 
 import java.time.LocalDate;
 
-import publicacion.Publicacion;
 import usuario.Inquilino;
 
 public class Reserva {

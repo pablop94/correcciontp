@@ -26,7 +26,7 @@ class InmuebleTest {
 		propietario = mock(Propietario.class);
 		direccion = new Direccion("Calle", 1212);
 		servicios = new ArrayList<Servicio>();
-		inmueble = new Inmueble("Argentina", "Quilmes", direccion, servicios);
+		inmueble = new Inmueble("Argentina", "Quilmes", direccion, servicios, propietario);
 	}
 	
 	@Test
@@ -35,7 +35,6 @@ class InmuebleTest {
 		assertEquals(inmueble.getCiudad(), "Quilmes"); 
 		assertEquals(inmueble.getDireccion(), direccion);
 		assertEquals(inmueble.getServicios().size(), 0);
-		inmueble.setPropietario(propietario);
 		assertEquals(inmueble.getPropietario(), propietario);
 	}
 	

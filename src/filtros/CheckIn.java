@@ -16,8 +16,9 @@ public class CheckIn extends Filtro {
 	}
 
 	@Override
-	public List<Publicacion> filtrarPublicaciones() {
-		return this.copiaPublicaciones.stream().filter(publicacion -> publicacion.getCheckIn().equals(this.checkIn)).collect(Collectors.toList());
+	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
+		publicaciones = publicaciones.stream().filter(publicacion -> publicacion.getCheckIn().isEqual(this.checkIn)).collect(Collectors.toList());
+		return publicaciones;
 	}
 
 }
