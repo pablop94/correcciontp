@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.*;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -115,76 +116,88 @@ class FiltrosTest {
 		assertTrue(publicacionesFiltradas.contains(publicacion3));
 		assertTrue(publicacionesFiltradas.contains(publicacion4));
 		assertFalse(publicacionesFiltradas.contains(publicacion5));
+		this.sitio.vaciarPublicaciones();
+		assertEquals(this.sitio.getPublicaciones().size(), 0);
 	}
 	
-//	@Test
-//	void testFiltroPorCheckIn() {
-//		assertEquals(this.sitio.getPublicaciones().size(), 5);
-//		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
-//		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-//		assertEquals(publicacionesFiltradas.size(), 3);
-//		assertFalse(publicacionesFiltradas.contains(publicacion1));
-//		assertTrue(publicacionesFiltradas.contains(publicacion2));
-//		assertTrue(publicacionesFiltradas.contains(publicacion3));
-//		assertTrue(publicacionesFiltradas.contains(publicacion4));
-//		assertFalse(publicacionesFiltradas.contains(publicacion5));
-//	}
-//
-//	@Test
-//	void testFiltroPorCheckOut() {
-//		assertEquals(this.sitio.getPublicaciones().size(), 5);
-//		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
-//		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-//		assertEquals(publicacionesFiltradas.size(), 3);
-//		assertFalse(publicacionesFiltradas.contains(publicacion1));
-//		assertTrue(publicacionesFiltradas.contains(publicacion2));
-//		assertFalse(publicacionesFiltradas.contains(publicacion3));
-//		assertTrue(publicacionesFiltradas.contains(publicacion4));
-//		assertTrue(publicacionesFiltradas.contains(publicacion5));
-//	}
-//	
-//	@Test
-//	void testFiltroPorCheckInYCheckOut() {
-//		assertEquals(this.sitio.getPublicaciones().size(), 5);
-//		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
-//		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
-//		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-//		assertEquals(publicacionesFiltradas.size(), 2);
-//		assertFalse(publicacionesFiltradas.contains(publicacion1));
-//		assertTrue(publicacionesFiltradas.contains(publicacion2));
-//		assertFalse(publicacionesFiltradas.contains(publicacion3));
-//		assertTrue(publicacionesFiltradas.contains(publicacion4));
-//		assertFalse(publicacionesFiltradas.contains(publicacion5));
-//	}
-//	
-//	
-//	@Test
-//	void testFiltroPorCiudadYCheckIn() {
-//		assertEquals(this.sitio.getPublicaciones().size(), 5);
-//		this.filtroCompuesto.agregarFiltro(filtroCiudad);
-//		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
-//		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-//		assertEquals(publicacionesFiltradas.size(), 2);
-//		assertFalse(publicacionesFiltradas.contains(publicacion1));
-//		assertFalse(publicacionesFiltradas.contains(publicacion2));
-//		assertTrue(publicacionesFiltradas.contains(publicacion3));
-//		assertTrue(publicacionesFiltradas.contains(publicacion4));
-//		assertFalse(publicacionesFiltradas.contains(publicacion5));
-//	}
-//	
-//	@Test
-//	void testFiltroPorCheckInCheckOutYCiudad() {
-//		assertEquals(this.sitio.getPublicaciones().size(), 5);
-//		this.filtroCompuesto.agregarFiltro(filtroCiudad);
-//		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
-//		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
-//		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-//		assertEquals(publicacionesFiltradas.size(), 1);
-//		assertFalse(publicacionesFiltradas.contains(publicacion1));
-//		assertFalse(publicacionesFiltradas.contains(publicacion2));
-//		assertFalse(publicacionesFiltradas.contains(publicacion3));
-//		assertTrue(publicacionesFiltradas.contains(publicacion4));
-//		assertFalse(publicacionesFiltradas.contains(publicacion5));
-//	}
+	@Test
+	void testFiltroPorCheckIn() {
+		assertEquals(this.sitio.getPublicaciones().size(), 5);
+		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
+		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
+		assertEquals(publicacionesFiltradas.size(), 3);
+		assertFalse(publicacionesFiltradas.contains(publicacion1));
+		assertTrue(publicacionesFiltradas.contains(publicacion2));
+		assertTrue(publicacionesFiltradas.contains(publicacion3));
+		assertTrue(publicacionesFiltradas.contains(publicacion4));
+		assertFalse(publicacionesFiltradas.contains(publicacion5));
+		this.sitio.vaciarPublicaciones();
+		assertEquals(this.sitio.getPublicaciones().size(), 0);
+	}
+
+	@Test
+	void testFiltroPorCheckOut() {
+		assertEquals(this.sitio.getPublicaciones().size(), 5);
+		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
+		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
+		assertEquals(publicacionesFiltradas.size(), 3);
+		assertFalse(publicacionesFiltradas.contains(publicacion1));
+		assertTrue(publicacionesFiltradas.contains(publicacion2));
+		assertFalse(publicacionesFiltradas.contains(publicacion3));
+		assertTrue(publicacionesFiltradas.contains(publicacion4));
+		assertTrue(publicacionesFiltradas.contains(publicacion5));
+		this.sitio.vaciarPublicaciones();
+		assertEquals(this.sitio.getPublicaciones().size(), 0);
+	}
+	
+	@Test
+	void testFiltroPorCheckInYCheckOut() {
+		assertEquals(this.sitio.getPublicaciones().size(), 5);
+		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
+		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
+		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
+		assertEquals(publicacionesFiltradas.size(), 2);
+		assertFalse(publicacionesFiltradas.contains(publicacion1));
+		assertTrue(publicacionesFiltradas.contains(publicacion2));
+		assertFalse(publicacionesFiltradas.contains(publicacion3));
+		assertTrue(publicacionesFiltradas.contains(publicacion4));
+		assertFalse(publicacionesFiltradas.contains(publicacion5));
+		this.sitio.vaciarPublicaciones();
+		assertEquals(this.sitio.getPublicaciones().size(), 0);
+	}
+	
+	
+	@Test
+	void testFiltroPorCiudadYCheckIn() {
+		assertEquals(this.sitio.getPublicaciones().size(), 5);
+		this.filtroCompuesto.agregarFiltro(filtroCiudad);
+		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
+		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
+		assertEquals(publicacionesFiltradas.size(), 2);
+		assertFalse(publicacionesFiltradas.contains(publicacion1));
+		assertFalse(publicacionesFiltradas.contains(publicacion2));
+		assertTrue(publicacionesFiltradas.contains(publicacion3));
+		assertTrue(publicacionesFiltradas.contains(publicacion4));
+		assertFalse(publicacionesFiltradas.contains(publicacion5));
+		this.sitio.vaciarPublicaciones();
+		assertEquals(this.sitio.getPublicaciones().size(), 0);
+	}
+	
+	@Test
+	void testFiltroPorCheckInCheckOutYCiudad() {
+		assertEquals(this.sitio.getPublicaciones().size(), 5);
+		this.filtroCompuesto.agregarFiltro(filtroCiudad);
+		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
+		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
+		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
+		assertEquals(publicacionesFiltradas.size(), 1);
+		assertFalse(publicacionesFiltradas.contains(publicacion1));
+		assertFalse(publicacionesFiltradas.contains(publicacion2));
+		assertFalse(publicacionesFiltradas.contains(publicacion3));
+		assertTrue(publicacionesFiltradas.contains(publicacion4));
+		assertFalse(publicacionesFiltradas.contains(publicacion5));
+		this.sitio.vaciarPublicaciones();
+		assertEquals(this.sitio.getPublicaciones().size(), 0);
+	}
 	
 }

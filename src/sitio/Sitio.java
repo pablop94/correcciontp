@@ -54,9 +54,11 @@ public class Sitio {
 		return this.servicios;
 	}
 
-
 	public void agregarServicio(Servicio servicioNuevo) {
 		this.servicios.add(servicioNuevo);
 	}
-
+	
+	public void vaciarPublicaciones() {
+			this.publicaciones.clear();
+	}
 }
