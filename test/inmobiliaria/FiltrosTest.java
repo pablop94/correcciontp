@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.*;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +41,6 @@ class FiltrosTest {
 
 	@BeforeEach
 	void setUp() {
-//		sitio = new Sitio();
 		sitio = Sitio.getInstance();
 		publicacionesFiltradas = sitio.getPublicaciones();
 		
@@ -105,6 +104,11 @@ class FiltrosTest {
 		sitio.agregarPublicacion(this.publicacion5);
 	}
 	
+	@AfterEach
+	void afterEach() {
+		this.sitio.vaciarPublicaciones();
+	}
+	
 	@Test
 	void testFiltroPorCiudad() {
 		assertEquals(this.sitio.getPublicaciones().size(), 5);
@@ -116,8 +120,6 @@ class FiltrosTest {
 		assertTrue(publicacionesFiltradas.contains(publicacion3));
 		assertTrue(publicacionesFiltradas.contains(publicacion4));
 		assertFalse(publicacionesFiltradas.contains(publicacion5));
-		this.sitio.vaciarPublicaciones();
-		assertEquals(this.sitio.getPublicaciones().size(), 0);
 	}
 	
 	@Test
@@ -131,8 +133,6 @@ class FiltrosTest {
 		assertTrue(publicacionesFiltradas.contains(publicacion3));
 		assertTrue(publicacionesFiltradas.contains(publicacion4));
 		assertFalse(publicacionesFiltradas.contains(publicacion5));
-		this.sitio.vaciarPublicaciones();
-		assertEquals(this.sitio.getPublicaciones().size(), 0);
 	}
 
 	@Test
@@ -146,8 +146,6 @@ class FiltrosTest {
 		assertFalse(publicacionesFiltradas.contains(publicacion3));
 		assertTrue(publicacionesFiltradas.contains(publicacion4));
 		assertTrue(publicacionesFiltradas.contains(publicacion5));
-		this.sitio.vaciarPublicaciones();
-		assertEquals(this.sitio.getPublicaciones().size(), 0);
 	}
 	
 	@Test
@@ -162,8 +160,6 @@ class FiltrosTest {
 		assertFalse(publicacionesFiltradas.contains(publicacion3));
 		assertTrue(publicacionesFiltradas.contains(publicacion4));
 		assertFalse(publicacionesFiltradas.contains(publicacion5));
-		this.sitio.vaciarPublicaciones();
-		assertEquals(this.sitio.getPublicaciones().size(), 0);
 	}
 	
 	
@@ -179,8 +175,6 @@ class FiltrosTest {
 		assertTrue(publicacionesFiltradas.contains(publicacion3));
 		assertTrue(publicacionesFiltradas.contains(publicacion4));
 		assertFalse(publicacionesFiltradas.contains(publicacion5));
-		this.sitio.vaciarPublicaciones();
-		assertEquals(this.sitio.getPublicaciones().size(), 0);
 	}
 	
 	@Test
@@ -196,8 +190,6 @@ class FiltrosTest {
 		assertFalse(publicacionesFiltradas.contains(publicacion3));
 		assertTrue(publicacionesFiltradas.contains(publicacion4));
 		assertFalse(publicacionesFiltradas.contains(publicacion5));
-		this.sitio.vaciarPublicaciones();
-		assertEquals(this.sitio.getPublicaciones().size(), 0);
 	}
 	
 }

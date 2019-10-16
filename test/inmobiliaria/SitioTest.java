@@ -2,6 +2,7 @@ package inmobiliaria;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,11 @@ class SitioTest {
 	void setUp() throws Exception {
 		sitio = Sitio.getInstance();
 		publicacion = mock(Publicacion.class);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		this.sitio.vaciarPublicaciones();
 	}
 
 	@Test
