@@ -1,12 +1,14 @@
 package sitio;
 
 import publicacion.Servicio;
+import usuario.Usuario;
 
-public class AdministradorDeSitio {
+public class AdministradorDeSitio extends Usuario{
 
 	private Sitio sitio;
 
 	public AdministradorDeSitio(Sitio sitio) {
+		super();
 		this.sitio = sitio;
 	}
 

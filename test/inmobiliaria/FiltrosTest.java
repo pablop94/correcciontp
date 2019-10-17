@@ -6,27 +6,32 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import filtros.CheckIn;
-import filtros.CheckOut;
+import filtros.FechaInOut;
 import filtros.Ciudad;
 import filtros.FiltroCompuesto;
 import publicacion.Inmueble;
 import publicacion.Publicacion;
+import publicacion.Reserva;
 import sitio.Sitio;
 
 class FiltrosTest {
 
 	private Sitio sitio;
-	private Ciudad filtroCiudad;
-	private CheckIn filtroCheckIn;
-	private CheckOut filtroCheckOut;
-	private FiltroCompuesto filtroCompuesto;
+	private Ciudad filtroCiudadQuilmes;
+	private Ciudad filtroCiudadSarandi;
+	private LocalDate filtroCheckIn;
+	private LocalDate filtroCheckOut;
+	private FechaInOut filtroFecha;
+	private FiltroCompuesto filtroCompuesto1;
+	private FiltroCompuesto filtroCompuesto2;
+	private FiltroCompuesto filtroCompuesto3;
 	private Publicacion publicacion1;
 	private Publicacion publicacion2;
 	private Publicacion publicacion3;
@@ -44,10 +49,15 @@ class FiltrosTest {
 		sitio = Sitio.getInstance();
 		publicacionesFiltradas = sitio.getPublicaciones();
 		
-		filtroCiudad = new Ciudad("Quilmes");
-		filtroCheckIn = new CheckIn(LocalDate.of(2019, Month.SEPTEMBER, 20));
-		filtroCheckOut = new CheckOut(LocalDate.of(2019, Month.SEPTEMBER, 30));
-		filtroCompuesto = new FiltroCompuesto();
+		filtroCheckIn = LocalDate.of(2019, Month.SEPTEMBER, 20);
+		filtroCheckOut = LocalDate.of(2019, Month.SEPTEMBER, 30);
+		
+		filtroCiudadQuilmes = new Ciudad("Quilmes");
+		filtroCiudadSarandi = new Ciudad("Sarandi");
+		filtroFecha = new FechaInOut(filtroCheckIn, filtroCheckOut);
+		filtroCompuesto1 = new FiltroCompuesto();
+		filtroCompuesto2 = new FiltroCompuesto();
+		filtroCompuesto3 = new FiltroCompuesto();
 		
 		publicacion1 = mock(Publicacion.class);
 		publicacion2 = mock(Publicacion.class);
@@ -61,47 +71,40 @@ class FiltrosTest {
 		inmueble4 = mock(Inmueble.class);
 		inmueble5 = mock(Inmueble.class);
 		
-		LocalDate checkIn1 = LocalDate.of(2019, Month.AUGUST, 30);
-		LocalDate checkOut1 = LocalDate.of(2019, Month.SEPTEMBER, 20);
-		LocalDate checkIn2 = LocalDate.of(2019, Month.SEPTEMBER, 20);
-		LocalDate checkOut2 = LocalDate.of(2019, Month.SEPTEMBER, 30);
-		LocalDate checkIn3 = LocalDate.of(2019, Month.SEPTEMBER, 20);
-		LocalDate checkOut3 = LocalDate.of(2019, Month.OCTOBER, 10);
-		LocalDate checkIn4 = LocalDate.of(2019, Month.SEPTEMBER, 20);
-		LocalDate checkOut4 = LocalDate.of(2019, Month.SEPTEMBER, 30);
-		LocalDate checkIn5 = LocalDate.of(2019, Month.SEPTEMBER, 10);
-		LocalDate checkOut5 = LocalDate.of(2019, Month.SEPTEMBER, 30);
-				
 		when(publicacion1.getInmueble()).thenReturn(inmueble1);
 		when(inmueble1.getCiudad()).thenReturn("Quilmes");		// coincide
-		when(publicacion1.getCheckIn()).thenReturn(checkIn1);
-		when(publicacion1.getCheckOut()).thenReturn(checkOut1);
 		
 		when(publicacion2.getInmueble()).thenReturn(inmueble2);
 		when(inmueble2.getCiudad()).thenReturn("Berazategui");
-		when(publicacion2.getCheckIn()).thenReturn(checkIn2);	// coincide
-		when(publicacion2.getCheckOut()).thenReturn(checkOut2); // coincide
 		
 		when(publicacion3.getInmueble()).thenReturn(inmueble3);
 		when(inmueble3.getCiudad()).thenReturn("Quilmes");		// coincide
-		when(publicacion3.getCheckIn()).thenReturn(checkIn3);	// coincide
-		when(publicacion3.getCheckOut()).thenReturn(checkOut3);
 		
 		when(publicacion4.getInmueble()).thenReturn(inmueble4);
 		when(inmueble4.getCiudad()).thenReturn("Quilmes");		// coincide
-		when(publicacion4.getCheckIn()).thenReturn(checkIn4);	// coincide
-		when(publicacion4.getCheckOut()).thenReturn(checkOut4); // coincide
 		
 		when(publicacion5.getInmueble()).thenReturn(inmueble5);
 		when(inmueble5.getCiudad()).thenReturn("Bernal");		
-		when(publicacion5.getCheckIn()).thenReturn(checkIn5);
-		when(publicacion5.getCheckOut()).thenReturn(checkOut5); // coincide
+
+		
+		when(publicacion1.puedeReservarseEn(filtroCheckIn, filtroCheckOut)).thenReturn(true);
+		when(publicacion2.puedeReservarseEn(filtroCheckIn, filtroCheckOut)).thenReturn(false);
+		when(publicacion3.puedeReservarseEn(filtroCheckIn, filtroCheckOut)).thenReturn(true);
+		when(publicacion4.puedeReservarseEn(filtroCheckIn, filtroCheckOut)).thenReturn(false);
+		when(publicacion5.puedeReservarseEn(filtroCheckIn, filtroCheckOut)).thenReturn(true);
+		
+		when(publicacion1.estaDentroDeFecha(filtroCheckIn, filtroCheckOut)).thenReturn(true);
+		when(publicacion2.estaDentroDeFecha(filtroCheckIn, filtroCheckOut)).thenReturn(true);
+		when(publicacion3.estaDentroDeFecha(filtroCheckIn, filtroCheckOut)).thenReturn(false);
+		when(publicacion4.estaDentroDeFecha(filtroCheckIn, filtroCheckOut)).thenReturn(false);
+		when(publicacion5.estaDentroDeFecha(filtroCheckIn, filtroCheckOut)).thenReturn(true);
 		
 		sitio.agregarPublicacion(this.publicacion1);
 		sitio.agregarPublicacion(this.publicacion2);
 		sitio.agregarPublicacion(this.publicacion3);
 		sitio.agregarPublicacion(this.publicacion4);
 		sitio.agregarPublicacion(this.publicacion5);
+		
 	}
 	
 	@AfterEach
@@ -110,10 +113,9 @@ class FiltrosTest {
 	}
 	
 	@Test
-	void testFiltroPorCiudad() {
-		assertEquals(this.sitio.getPublicaciones().size(), 5);
-		this.filtroCompuesto.agregarFiltro(filtroCiudad);
-		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
+	void testFiltroPorCiudadQuilmesYDevuelveTresPublicaciones() {
+		this.filtroCompuesto1.agregarFiltro(filtroCiudadQuilmes);
+		publicacionesFiltradas = this.filtroCompuesto1.filtrarPublicaciones(publicacionesFiltradas);
 		assertEquals(publicacionesFiltradas.size(), 3);
 		assertTrue(publicacionesFiltradas.contains(publicacion1));
 		assertFalse(publicacionesFiltradas.contains(publicacion2));
@@ -123,73 +125,44 @@ class FiltrosTest {
 	}
 	
 	@Test
-	void testFiltroPorCheckIn() {
-		assertEquals(this.sitio.getPublicaciones().size(), 5);
-		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
-		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-		assertEquals(publicacionesFiltradas.size(), 3);
-		assertFalse(publicacionesFiltradas.contains(publicacion1));
-		assertTrue(publicacionesFiltradas.contains(publicacion2));
-		assertTrue(publicacionesFiltradas.contains(publicacion3));
-		assertTrue(publicacionesFiltradas.contains(publicacion4));
-		assertFalse(publicacionesFiltradas.contains(publicacion5));
-	}
-
-	@Test
-	void testFiltroPorCheckOut() {
-		assertEquals(this.sitio.getPublicaciones().size(), 5);
-		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
-		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-		assertEquals(publicacionesFiltradas.size(), 3);
-		assertFalse(publicacionesFiltradas.contains(publicacion1));
-		assertTrue(publicacionesFiltradas.contains(publicacion2));
+	void testFiltroPorFechaYMeDevuelveDosPublicacionesQueEsteDentroDelRangoYPuedaReservarseEntreLasFechasDelFiltro() {
+		this.filtroCompuesto1.agregarFiltro(filtroFecha);
+		publicacionesFiltradas = this.filtroCompuesto1.filtrarPublicaciones(publicacionesFiltradas);
+		assertEquals(publicacionesFiltradas.size(), 2);
+		assertTrue(publicacionesFiltradas.contains(publicacion1));
+		assertFalse(publicacionesFiltradas.contains(publicacion2));
 		assertFalse(publicacionesFiltradas.contains(publicacion3));
-		assertTrue(publicacionesFiltradas.contains(publicacion4));
+		assertFalse(publicacionesFiltradas.contains(publicacion4));
 		assertTrue(publicacionesFiltradas.contains(publicacion5));
 	}
 	
 	@Test
-	void testFiltroPorCheckInYCheckOut() {
-		assertEquals(this.sitio.getPublicaciones().size(), 5);
-		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
-		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
-		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-		assertEquals(publicacionesFiltradas.size(), 2);
-		assertFalse(publicacionesFiltradas.contains(publicacion1));
-		assertTrue(publicacionesFiltradas.contains(publicacion2));
-		assertFalse(publicacionesFiltradas.contains(publicacion3));
-		assertTrue(publicacionesFiltradas.contains(publicacion4));
-		assertFalse(publicacionesFiltradas.contains(publicacion5));
-	}
-	
-	
-	@Test
-	void testFiltroPorCiudadYCheckIn() {
-		assertEquals(this.sitio.getPublicaciones().size(), 5);
-		this.filtroCompuesto.agregarFiltro(filtroCiudad);
-		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
-		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
-		assertEquals(publicacionesFiltradas.size(), 2);
-		assertFalse(publicacionesFiltradas.contains(publicacion1));
-		assertFalse(publicacionesFiltradas.contains(publicacion2));
-		assertTrue(publicacionesFiltradas.contains(publicacion3));
-		assertTrue(publicacionesFiltradas.contains(publicacion4));
-		assertFalse(publicacionesFiltradas.contains(publicacion5));
-	}
-	
-	@Test
-	void testFiltroPorCheckInCheckOutYCiudad() {
-		assertEquals(this.sitio.getPublicaciones().size(), 5);
-		this.filtroCompuesto.agregarFiltro(filtroCiudad);
-		this.filtroCompuesto.agregarFiltro(filtroCheckIn);
-		this.filtroCompuesto.agregarFiltro(filtroCheckOut);
-		publicacionesFiltradas = this.filtroCompuesto.filtrarPublicaciones(publicacionesFiltradas);
+	void testFiltroPorFechaYCiudadYMeDevuelveUnaPublicacionQueEsteDentroDelRangoYPuedaReservarseEntreLasFechasDelFiltroEnQuilmes() {
+		this.filtroCompuesto1.agregarFiltro(filtroCiudadQuilmes);
+		this.filtroCompuesto1.agregarFiltro(filtroFecha);
+		publicacionesFiltradas = this.filtroCompuesto1.filtrarPublicaciones(publicacionesFiltradas);
 		assertEquals(publicacionesFiltradas.size(), 1);
-		assertFalse(publicacionesFiltradas.contains(publicacion1));
+		assertTrue(publicacionesFiltradas.contains(publicacion1));
 		assertFalse(publicacionesFiltradas.contains(publicacion2));
 		assertFalse(publicacionesFiltradas.contains(publicacion3));
-		assertTrue(publicacionesFiltradas.contains(publicacion4));
+		assertFalse(publicacionesFiltradas.contains(publicacion4));
 		assertFalse(publicacionesFiltradas.contains(publicacion5));
 	}
 	
+	@Test
+	void testAgregoDosFiltrosCompuestosAUnFiltroCompuestoYNoMeDevuelveNingunaPublicacion() {
+		this.filtroCompuesto1.agregarFiltro(filtroCiudadQuilmes);
+		this.filtroCompuesto1.agregarFiltro(filtroFecha);
+		this.filtroCompuesto2.agregarFiltro(filtroCiudadSarandi);
+		this.filtroCompuesto2.agregarFiltro(filtroFecha);
+		this.filtroCompuesto3.agregarFiltro(filtroCompuesto1);
+		this.filtroCompuesto3.agregarFiltro(filtroCompuesto2);
+		publicacionesFiltradas = this.filtroCompuesto3.filtrarPublicaciones(publicacionesFiltradas);
+		assertEquals(publicacionesFiltradas.size(), 0);
+		assertFalse(publicacionesFiltradas.contains(publicacion1));
+		assertFalse(publicacionesFiltradas.contains(publicacion2));
+		assertFalse(publicacionesFiltradas.contains(publicacion3));
+		assertFalse(publicacionesFiltradas.contains(publicacion4));
+		assertFalse(publicacionesFiltradas.contains(publicacion5));
+	}
 }

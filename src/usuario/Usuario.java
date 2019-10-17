@@ -12,6 +12,10 @@ public abstract class Usuario {
 		this.fechaCreacion = fechaCreacion;
 	}
 	
+	public Usuario() {
+		super();
+	}
+	
 	protected String nombre;
 	protected String email;
 	protected String telefono;

@@ -59,19 +59,20 @@ public class Publicacion {
 	}
 
 	public Boolean puedeReservarseEn(LocalDate checkIn, LocalDate checkOut) {
-		List<Boolean> collect = this.getReservas().stream().filter(reserva -> reserva.estaAceptada()).map(reserva -> this.tieneReservasPara(checkIn, checkOut, reserva)).collect(Collectors.toList());
-		return (!collect.contains(true));
+		if(this.getReservas().size() > 0) {
+			List<Boolean> collect = this.getReservas().stream().filter(reserva -> reserva.estaAceptada()).map(reserva -> this.tieneReservasPara(checkIn, checkOut, reserva)).collect(Collectors.toList());
+			return (!collect.contains(true));
+		} else {
+			return true;
+		}
 	}
 
 	private Boolean tieneReservasPara(LocalDate checkIn, LocalDate checkOut, Reserva reserva) {
 		return (checkIn.isBefore(reserva.getCheckOut()) && reserva.getCheckIn().isBefore(checkOut));
 	}
+
+	public Boolean estaDentroDeFecha(LocalDate checkIn, LocalDate checkOut) {
+		return (this.getCheckIn().isBefore(checkIn) || this.getCheckIn().isEqual(checkIn)) && (this.getCheckOut().isAfter(checkOut) || this.getCheckOut().isEqual(checkOut));
+	}
 	
-//	public Boolean estaDentroDelCheckIn(LocalDate check) {
-//		return (this.getCheckIn().isBefore(check) || this.getCheckIn().isEqual(check)) && check.isBefore(this.getCheckOut());
-//	}
-//	
-//	public Boolean estaDentroDelCheckOut(LocalDate check) {
-//		return (this.getCheckOut().isAfter(check) || this.getCheckOut().isEqual(check)) && check.isAfter(this.getCheckIn());
-//	}
 }
