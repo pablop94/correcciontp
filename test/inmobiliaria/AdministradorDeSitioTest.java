@@ -2,9 +2,6 @@ package inmobiliaria;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalDate;
-import java.time.Month;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +23,13 @@ class AdministradorDeSitioTest {
 	void comoAdministradorDeSitioPuedoAgregarServiciosAlSitio() {
 		assertEquals(sitio.getServicios().size(), 0);
 		administradorDeSitio.crearServicio("Wi-fi");
-		assertEquals(sitio.getServicios().stream().findFirst().get().getName(), "Wi-fi");
+		assertEquals(sitio.getServicios().get(0), "Wi-fi");
 	}
 
+	@Test
+	void comoAdministradorDeSitioPuedoAgregarTiposDeInmuebleAlSitio() {
+		assertEquals(sitio.getTiposInmueble().size(), 0);
+		administradorDeSitio.crearTipoInmueble("Casa");
+		assertEquals(sitio.getTiposInmueble().get(0), "Casa");
+	}
 }

@@ -4,25 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import publicacion.Publicacion;
-import publicacion.Servicio;
 
 public class Sitio {
 
 	private List<Publicacion> publicaciones;
-	private List<Servicio> servicios;
+	private List<String> servicios;
+	private List<String> tiposInmueble;
 	private ServidorMail servidorMail;
     public AdministradorDeSitio administradorDeSitio;
+	private ServidorMail servidor;
 	private static Sitio sitio;
-    
-	public Sitio(ServidorMail servidor) {
-		this.servidorMail = servidor;
-	}
-	
+ 	
 	public Sitio() {
 		super();
 		this.publicaciones = new ArrayList<Publicacion>();
 		this.administradorDeSitio = new AdministradorDeSitio(this);
-		this.servicios = new ArrayList<Servicio>();
+		this.servicios = new ArrayList<String>();
+		this.tiposInmueble = new ArrayList<String>();
+		this.servidorMail = servidor;
 	}
 	
 	public static Sitio getInstance() {
@@ -44,21 +43,27 @@ public class Sitio {
 			this.publicaciones.add(publicacion);
 	}
 
-
 	public void eliminarPublicacion(Publicacion publicacion) {
 		this.publicaciones.remove(publicacion);
 	}
 
 
-	public List<Servicio> getServicios() {
+	public List<String> getServicios() {
 		return this.servicios;
 	}
 
-	public void agregarServicio(Servicio servicioNuevo) {
+	public void agregarServicio(String servicioNuevo) {
 		this.servicios.add(servicioNuevo);
 	}
+	public List<String> getTiposInmueble() {
+		return this.tiposInmueble;
+	}
+
+	public void agregarTipoInmueble(String tipoInmueble) {
+		this.tiposInmueble.add(tipoInmueble);
+	}
 	
-	public void vaciarPublicaciones() {
+	public void vaciarListaPublicaciones() {
 			this.publicaciones.clear();
 	}
 }

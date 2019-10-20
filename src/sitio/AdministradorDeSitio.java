@@ -1,6 +1,5 @@
 package sitio;
 
-import publicacion.Servicio;
 import usuario.Usuario;
 
 public class AdministradorDeSitio extends Usuario{
@@ -13,8 +12,10 @@ public class AdministradorDeSitio extends Usuario{
 	}
 
 	public void crearServicio(String nombreServicio) {
-		Servicio servicioNuevo = new Servicio(nombreServicio);
-		this.sitio.agregarServicio(servicioNuevo);
+		this.sitio.agregarServicio(nombreServicio);
 	}
 
+	public void crearTipoInmueble(String tipoInmueble) {
+		this.sitio.agregarTipoInmueble(tipoInmueble);
+	}
 }

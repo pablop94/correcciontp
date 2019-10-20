@@ -11,11 +11,13 @@ import org.junit.jupiter.api.Test;
 import publicacion.Inmueble;
 import publicacion.Publicacion;
 import publicacion.Reserva;
+import usuario.Propietario;
 
 import static org.mockito.Mockito.*;
 
 class PublicacionTest {
 	
+	private Propietario propietario;
 	private Publicacion publicacion;
 	private Inmueble inmueble;
 	private LocalDate checkInPublicacion;
@@ -35,6 +37,7 @@ class PublicacionTest {
 
 	@BeforeEach
 	void setUp() {
+		propietario = mock(Propietario.class);
 		inmueble = mock(Inmueble.class);
 		nuevaReserva = mock(Reserva.class);
 		nuevaReserva2 = mock(Reserva.class);
@@ -80,6 +83,8 @@ class PublicacionTest {
 		assertEquals(publicacion.getCheckOut(), checkOutPublicacion);
 		assertTrue(publicacion.getCheckIn().isBefore(publicacion.getCheckOut()));
 		assertEquals(publicacion.getPrecio(), 10000d);
+		when(inmueble.getPropietario()).thenReturn(propietario);
+		assertEquals(publicacion.getPropietario(), propietario);
 	}
 	
 	@Test

@@ -17,14 +17,18 @@ public class Propietario extends Usuario{
 		inmuebles = new ArrayList<Inmueble>();
 	}
 
-	public void agregarInmueble(Inmueble inmueble) {
-		this.inmuebles.add(inmueble);
-	}
-	
 	public List<Inmueble> getInmuebles() {
 		return this.inmuebles;
 	}
 	
+	public void agregarInmueble(Inmueble inmueble) {
+		if (!this.getInmuebles().contains(inmueble)) {
+			this.inmuebles.add(inmueble);
+		} else {
+			return;
+		}
+	}
+		
 	public void notificarReservaPendiente(Reserva nuevaReserva) {
 		Sitio.getInstance().getServidorMail().enviarMail(this.getEmail(), 
 				"Tenes una nueva reserva!", 

@@ -24,7 +24,7 @@ class SitioTest {
 	
 	@AfterEach
 	void afterEach() {
-		this.sitio.vaciarPublicaciones();
+		this.sitio.vaciarListaPublicaciones();
 	}
 
 	@Test

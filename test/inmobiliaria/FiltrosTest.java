@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -18,7 +17,6 @@ import filtros.Ciudad;
 import filtros.FiltroCompuesto;
 import publicacion.Inmueble;
 import publicacion.Publicacion;
-import publicacion.Reserva;
 import sitio.Sitio;
 
 class FiltrosTest {
@@ -109,7 +107,7 @@ class FiltrosTest {
 	
 	@AfterEach
 	void afterEach() {
-		this.sitio.vaciarPublicaciones();
+		this.sitio.vaciarListaPublicaciones();
 	}
 	
 	@Test

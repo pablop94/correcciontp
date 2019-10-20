@@ -6,20 +6,25 @@ import usuario.Propietario;
 
 public class Inmueble {
 
+	private String tipoInmueble;
 	private String pais;
 	private String ciudad;
 	private Direccion direccion;
-	private List<Servicio> servicios;
+	private List<String> servicios;
 	private Propietario propietario;
 	
-	public Inmueble(String pais, String ciudad, Direccion direccion, List<Servicio> servicios, Propietario propietario) {
+	public Inmueble(String tipoInmueble, String pais, String ciudad, Direccion direccion, List<String> servicios) {
+		this.tipoInmueble = tipoInmueble;
 		this.pais = pais;
 		this.ciudad = ciudad;
 		this.direccion = direccion;
 		this.servicios = servicios;
-		this.setPropietario(propietario);
 	}
 
+	public String getTipoInmueble() {
+		return this.tipoInmueble;
+	}
+	
 	public String getPais() {
 		return this.pais;
 	}
@@ -32,7 +37,7 @@ public class Inmueble {
 		return this.direccion;
 	}
 
-	public List<Servicio> getServicios() {
+	public List<String> getServicios() {
 		return this.servicios;
 	}
 
