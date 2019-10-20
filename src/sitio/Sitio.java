@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import publicacion.Publicacion;
+import usuario.AdministradorDeSitio;
+import usuario.Usuario;
 
 public class Sitio {
 
+	private List<Usuario> usuarios;
 	private List<Publicacion> publicaciones;
 	private List<String> servicios;
 	private List<String> tiposInmueble;
@@ -17,6 +20,7 @@ public class Sitio {
  	
 	public Sitio() {
 		super();
+		this.usuarios = new ArrayList<Usuario>();
 		this.publicaciones = new ArrayList<Publicacion>();
 		this.administradorDeSitio = new AdministradorDeSitio(this);
 		this.servicios = new ArrayList<String>();
@@ -31,22 +35,33 @@ public class Sitio {
         return Sitio.sitio;
 	}
 	
-	public ServidorMail getServidorMail() {
-		return this.servidorMail;
+	public List<Usuario> getUsuarios() {
+		return this.usuarios;
+	}
+	
+	public void registrarUsuario(Usuario usuario) {
+		this.usuarios.add(usuario);
 	}
 	
 	public List<Publicacion> getPublicaciones() {
 		return this.publicaciones;
 	}
-
+	
 	public void agregarPublicacion(Publicacion publicacion) {
-			this.publicaciones.add(publicacion);
+		this.publicaciones.add(publicacion);
 	}
-
+	
 	public void eliminarPublicacion(Publicacion publicacion) {
 		this.publicaciones.remove(publicacion);
 	}
-
+	
+	public void vaciarListaPublicaciones() {
+		this.publicaciones.clear();
+	}
+	
+	public ServidorMail getServidorMail() {
+		return this.servidorMail;
+	}	
 
 	public List<String> getServicios() {
 		return this.servicios;
@@ -63,7 +78,4 @@ public class Sitio {
 		this.tiposInmueble.add(tipoInmueble);
 	}
 	
-	public void vaciarListaPublicaciones() {
-			this.publicaciones.clear();
-	}
 }

@@ -1,6 +1,6 @@
-package sitio;
+package usuario;
 
-import usuario.Usuario;
+import sitio.Sitio;
 
 public class AdministradorDeSitio extends Usuario{
 

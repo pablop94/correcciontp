@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import usuario.Propietario;
+import usuario.Usuario;
 
 public class Publicacion {
 
@@ -54,7 +54,7 @@ public class Publicacion {
 		return this.reservas;
 	}
 
-	public Propietario getPropietario() {
+	public Usuario getPropietario() {
 		return this.getInmueble().getPropietario();
 	}
 

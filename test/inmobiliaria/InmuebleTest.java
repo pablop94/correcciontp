@@ -12,19 +12,19 @@ import org.junit.jupiter.api.Test;
 
 import publicacion.Direccion;
 import publicacion.Inmueble;
-import usuario.Propietario;
+import usuario.Usuario;
 
 class InmuebleTest {
 
 	private Inmueble inmueble1;
 	private Inmueble inmueble2;
 	private Direccion direccion;
-	private Propietario propietario;
+	private Usuario propietario;
 	private List<String> servicios;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		propietario = new Propietario("Kevin", "kevindlp@gmail.com", "+540112223341", LocalDate.of(2019, Month.APRIL, 2));
+		propietario = new Usuario("Kevin", "kevindlp@gmail.com", "+540112223341", LocalDate.of(2019, Month.APRIL, 2));
 		direccion = new Direccion("Rivadavia", 1212);
 		servicios = new ArrayList<String>();
 		inmueble1 = new Inmueble("Casa", "Argentina", "Quilmes", direccion, servicios);

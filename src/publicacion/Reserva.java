@@ -2,16 +2,16 @@ package publicacion;
 
 import java.time.LocalDate;
 
-import usuario.Inquilino;
+import usuario.Usuario;
 
 public class Reserva {
 	private Publicacion publicacion;
-	private Inquilino inquilino;
+	private Usuario inquilino;
 	private LocalDate checkIn;
 	private LocalDate checkOut;
 	private Boolean estaAceptada;
 	
-	public Reserva(Publicacion publicacion, Inquilino inquilino, LocalDate checkIn, LocalDate checkOut) {
+	public Reserva(Publicacion publicacion, Usuario inquilino, LocalDate checkIn, LocalDate checkOut) {
 		this.estaAceptada = false;
 		this.publicacion = publicacion;
 		this.inquilino = inquilino;
@@ -26,7 +26,7 @@ public class Reserva {
 		return publicacion;
 	}
 
-	public Inquilino getInquilino() {
+	public Usuario getInquilino() {
 		return this.inquilino;
 	}
 

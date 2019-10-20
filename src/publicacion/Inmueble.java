@@ -2,7 +2,7 @@ package publicacion;
 
 import java.util.List;
 
-import usuario.Propietario;
+import usuario.Usuario;
 
 public class Inmueble {
 
@@ -11,7 +11,7 @@ public class Inmueble {
 	private String ciudad;
 	private Direccion direccion;
 	private List<String> servicios;
-	private Propietario propietario;
+	private Usuario propietario;
 	
 	public Inmueble(String tipoInmueble, String pais, String ciudad, Direccion direccion, List<String> servicios) {
 		this.tipoInmueble = tipoInmueble;
@@ -41,11 +41,11 @@ public class Inmueble {
 		return this.servicios;
 	}
 
-	public Propietario getPropietario() {
+	public Usuario getPropietario() {
 		return this.propietario;
 	}
 
-	public void setPropietario(Propietario propietario) {
+	public void setPropietario(Usuario propietario) {
 		this.propietario = propietario;
 		propietario.agregarInmueble(this);
 	}

@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import publicacion.Publicacion;
 import publicacion.Reserva;
-import usuario.Inquilino;
-import usuario.Propietario;
+import usuario.Usuario;
 
 import static org.mockito.Mockito.*;
 
@@ -17,18 +16,18 @@ import java.time.Month;
 
 class ReservaTest {
 	
-	private Propietario propietario;
+	private Usuario propietario;
 	private Reserva reserva;
 	private Publicacion publicacion;
-	private Inquilino inquilino;
+	private Usuario inquilino;
 	private LocalDate checkIn;
 	private LocalDate checkOut;
 	
 	@BeforeEach
 	public void setUp() throws Exception {
-		propietario = mock(Propietario.class);
+		propietario = mock(Usuario.class);
 		publicacion = mock(Publicacion.class);
-		inquilino = mock(Inquilino.class);
+		inquilino = mock(Usuario.class);
 		checkIn = LocalDate.of(2019, Month.SEPTEMBER, 25);
 		checkOut = LocalDate.of(2019, Month.SEPTEMBER, 29);
 		when(publicacion.getPropietario()).thenReturn(propietario);

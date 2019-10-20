@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import publicacion.Publicacion;
 import sitio.Sitio;
+import usuario.Usuario;
 
 import static org.mockito.Mockito.*;
 
@@ -15,11 +16,13 @@ class SitioTest {
 
 	private Sitio sitio;
 	private Publicacion publicacion;
+	private Usuario usuario;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		sitio = Sitio.getInstance();
 		publicacion = mock(Publicacion.class);
+		usuario = mock(Usuario.class);
 	}
 	
 	@AfterEach
@@ -27,6 +30,12 @@ class SitioTest {
 		this.sitio.vaciarListaPublicaciones();
 	}
 
+	@Test
+	void testCreoUnUsuarioYLoRegistroEnElSitio() {
+		sitio.registrarUsuario(usuario);
+		assertTrue(sitio.getUsuarios().contains(usuario));
+	}
+	
 	@Test
 	void cuandoCreoUnaPublicacionSeAgregaAlSitio() {
 		assertEquals(sitio.getPublicaciones().size(), 0);

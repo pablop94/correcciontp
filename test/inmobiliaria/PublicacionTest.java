@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test;
 import publicacion.Inmueble;
 import publicacion.Publicacion;
 import publicacion.Reserva;
-import usuario.Propietario;
+import usuario.Usuario;
 
 import static org.mockito.Mockito.*;
 
 class PublicacionTest {
 	
-	private Propietario propietario;
+	private Usuario propietario;
 	private Publicacion publicacion;
 	private Inmueble inmueble;
 	private LocalDate checkInPublicacion;
@@ -37,7 +37,7 @@ class PublicacionTest {
 
 	@BeforeEach
 	void setUp() {
-		propietario = mock(Propietario.class);
+		propietario = mock(Usuario.class);
 		inmueble = mock(Inmueble.class);
 		nuevaReserva = mock(Reserva.class);
 		nuevaReserva2 = mock(Reserva.class);
