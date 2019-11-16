@@ -62,6 +62,9 @@ public class Publicacion {
 		//Se puede cambiar por un metodo que se llama tieneReservas() e internamente haga esto
 		if(this.getReservas().size() > 0) {
 			//después del filter pueden usar un reduce para no tener una lista de booleans
+			// sería algo así:
+
+			// this.getReservas().stream.filter(reserva -> reserva.estaAceptada()).reduce(false, (r1, r2) -> r1 || this.tieneReservasPara(checkIn, checkOut, reserva))
 			List<Boolean> collect = this.getReservas().stream().filter(reserva -> reserva.estaAceptada()).map(reserva -> this.tieneReservasPara(checkIn, checkOut, reserva)).collect(Collectors.toList());
 			return (!collect.contains(true));
 		} else {
