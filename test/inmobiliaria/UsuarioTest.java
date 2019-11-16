@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import publicacion.Inmueble;
-import publicacion.Publicacion;
 import publicacion.Reserva;
 import sitio.Sitio;
 import usuario.Usuario;
@@ -22,12 +21,14 @@ class UsuarioTest {
 	private Usuario propietario;
 	private Inmueble inmueble;
 	private Reserva reserva;
+	private Sitio sitio;
 	
 	@BeforeEach
 	public void setUp() throws Exception {
+		sitio = mock(Sitio.class);
 		fechaRegistro = LocalDate.of(2019, Month.APRIL, 21);
-		inquilino = new Usuario("Ezequiel", "ese@hotmail.com", "+5411931294", fechaRegistro);
-		propietario = new Usuario("Marcos", "marcos@hotmail.com", "+541194234125", fechaRegistro);
+		inquilino = new Usuario("Ezequiel", "ese@hotmail.com", "+5411931294", fechaRegistro, sitio);
+		propietario = new Usuario("Marcos", "marcos@hotmail.com", "+541194234125", fechaRegistro, sitio);
 		inmueble = mock(Inmueble.class);
 		reserva = mock(Reserva.class);
 	}

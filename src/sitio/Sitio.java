@@ -3,8 +3,8 @@ package sitio;
 import java.util.ArrayList;
 import java.util.List;
 
+import filtros.Filtro;
 import publicacion.Publicacion;
-import usuario.AdministradorDeSitio;
 import usuario.Usuario;
 
 public class Sitio {
@@ -14,25 +14,18 @@ public class Sitio {
 	private List<String> servicios;
 	private List<String> tiposInmueble;
 	private ServidorMail servidorMail;
-    public AdministradorDeSitio administradorDeSitio;
-	private ServidorMail servidor;
-	private static Sitio sitio;
  	
 	public Sitio() {
 		super();
 		this.usuarios = new ArrayList<Usuario>();
 		this.publicaciones = new ArrayList<Publicacion>();
-		this.administradorDeSitio = new AdministradorDeSitio(this);
 		this.servicios = new ArrayList<String>();
 		this.tiposInmueble = new ArrayList<String>();
-		this.servidorMail = servidor;
 	}
-	
-	public static Sitio getInstance() {
-        if (sitio == null){
-            sitio = new Sitio();
-        }
-        return Sitio.sitio;
+
+	public Sitio(ServidorMail servidor) {
+		this();
+		this.servidorMail = servidor;
 	}
 	
 	public List<Usuario> getUsuarios() {
@@ -78,4 +71,7 @@ public class Sitio {
 		this.tiposInmueble.add(tipoInmueble);
 	}
 	
+	public List<Publicacion> buscarPublicaciones(Filtro filtro) {
+		return filtro.filtrarPublicaciones(this.publicaciones);
+	}
 }

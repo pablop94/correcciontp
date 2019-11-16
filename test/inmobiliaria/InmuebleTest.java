@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import publicacion.Direccion;
 import publicacion.Inmueble;
+import sitio.Sitio;
 import usuario.Usuario;
 
 class InmuebleTest {
@@ -21,10 +22,12 @@ class InmuebleTest {
 	private Direccion direccion;
 	private Usuario propietario;
 	private List<String> servicios;
-
+	private Sitio sitio;
+	
 	@BeforeEach
 	void setUp() throws Exception {
-		propietario = new Usuario("Kevin", "kevindlp@gmail.com", "+540112223341", LocalDate.of(2019, Month.APRIL, 2));
+		sitio = new Sitio();
+		propietario = new Usuario("Kevin", "kevindlp@gmail.com", "+540112223341", LocalDate.of(2019, Month.APRIL, 2), sitio);
 		direccion = new Direccion("Rivadavia", 1212);
 		servicios = new ArrayList<String>();
 		inmueble1 = new Inmueble("Casa", "Argentina", "Quilmes", direccion, servicios);
@@ -33,7 +36,6 @@ class InmuebleTest {
 	
 	@Test
 	void testConstructorInmueble() {
-
 		assertEquals(inmueble1.getTipoInmueble(), "Casa");
 		assertEquals(inmueble1.getPais(), "Argentina");
 		assertEquals(inmueble1.getCiudad(), "Quilmes"); 

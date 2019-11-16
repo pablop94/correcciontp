@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +43,7 @@ class FiltrosTest {
 
 	@BeforeEach
 	void setUp() {
-		sitio = Sitio.getInstance();
+		sitio = new Sitio();
 		publicacionesFiltradas = sitio.getPublicaciones();
 		
 		filtroCheckIn = LocalDate.of(2019, Month.SEPTEMBER, 20);
@@ -105,11 +104,6 @@ class FiltrosTest {
 		
 	}
 	
-	@AfterEach
-	void afterEach() {
-		this.sitio.vaciarListaPublicaciones();
-	}
-	
 	@Test
 	void testFiltroPorCiudadQuilmesYDevuelveTresPublicaciones() {
 		this.filtroCompuesto1.agregarFiltro(filtroCiudadQuilmes);
@@ -162,5 +156,27 @@ class FiltrosTest {
 		assertFalse(publicacionesFiltradas.contains(publicacion3));
 		assertFalse(publicacionesFiltradas.contains(publicacion4));
 		assertFalse(publicacionesFiltradas.contains(publicacion5));
+	}
+	
+	@Test
+	void testBuscarPublicacionesDirectamenteDesdeElSitio() {
+		assertEquals(sitio.buscarPublicaciones(filtroCiudadQuilmes).size(), 3);
+		assertTrue(sitio.buscarPublicaciones(filtroCiudadQuilmes).contains(publicacion1));
+		assertTrue(sitio.buscarPublicaciones(filtroCiudadQuilmes).contains(publicacion3));
+		assertTrue(sitio.buscarPublicaciones(filtroCiudadQuilmes).contains(publicacion4));
+		assertFalse(sitio.buscarPublicaciones(filtroCiudadQuilmes).contains(publicacion2));
+		assertFalse(sitio.buscarPublicaciones(filtroCiudadQuilmes).contains(publicacion5));
+	}
+	
+	@Test
+	void testBuscarPublicacionesDirectamenteDesdeElSitioUsandoFiltroCompuesto() {
+		this.filtroCompuesto1.agregarFiltro(filtroCiudadQuilmes);
+		this.filtroCompuesto1.agregarFiltro(filtroFecha);
+		assertEquals(sitio.buscarPublicaciones(filtroCompuesto1).size(), 1);
+		assertTrue(sitio.buscarPublicaciones(filtroCompuesto1).contains(publicacion1));
+		assertFalse(sitio.buscarPublicaciones(filtroCompuesto1).contains(publicacion3));
+		assertFalse(sitio.buscarPublicaciones(filtroCompuesto1).contains(publicacion4));
+		assertFalse(sitio.buscarPublicaciones(filtroCompuesto1).contains(publicacion2));
+		assertFalse(sitio.buscarPublicaciones(filtroCompuesto1).contains(publicacion5));
 	}
 }

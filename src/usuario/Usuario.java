@@ -16,8 +16,9 @@ public class Usuario {
 	private LocalDate fechaRegistro;
 	private List<Reserva> reservas;
 	private List<Inmueble> inmuebles;
+	private Sitio sitio;
 	
-	public Usuario(String nombre, String email, String telefono, LocalDate fechaRegistro) {
+	public Usuario(String nombre, String email, String telefono, LocalDate fechaRegistro, Sitio sitio) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
@@ -25,12 +26,11 @@ public class Usuario {
 		this.fechaRegistro = fechaRegistro;
 		reservas = new ArrayList<Reserva>();
 		inmuebles = new ArrayList<Inmueble>();
+		this.sitio = sitio;
 	}
 	
-	public Usuario() {
-		super();
-	}
-	
+	public Usuario() {	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -68,15 +68,19 @@ public class Usuario {
 		}
 	}
 
+	public Sitio getSitio() {
+		return this.sitio;
+	}
+	
 	public void notificarReservaPendiente(Reserva reserva) {
-		Sitio.getInstance().getServidorMail().enviarMail(this.getEmail(), 
+		this.sitio.getServidorMail().enviarMail(this.getEmail(), 
 				"Tenes una nueva reserva!", 
 				"El usuario " + reserva.getInquilino().getNombre() + 
 				" ha realizado una reserva en tu inmueble");
 	}
 	
 	public void notificarReservaConcretada(Reserva reserva) {
-		Sitio.getInstance().getServidorMail().enviarMail(this.getEmail(), 
+		this.sitio.getServidorMail().enviarMail(this.getEmail(), 
 				"Tu reserva se confirmo!", 
 				"El usuario " + reserva.getPublicacion().getPropietario().getNombre() + " acepto tu reserva!");
 	}

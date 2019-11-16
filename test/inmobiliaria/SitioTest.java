@@ -20,7 +20,7 @@ class SitioTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		sitio = Sitio.getInstance();
+		sitio = new Sitio();
 		publicacion = mock(Publicacion.class);
 		usuario = mock(Usuario.class);
 	}

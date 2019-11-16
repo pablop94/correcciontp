@@ -16,7 +16,7 @@ public class FiltroCompuesto extends Filtro {
 	
 	@Override
 	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
-		for (Filtro unFiltro: this.getFiltros()) {
+		for (Filtro unFiltro: filtros) {
 			publicaciones = unFiltro.filtrarPublicaciones(publicaciones);
 		}
 		return publicaciones;

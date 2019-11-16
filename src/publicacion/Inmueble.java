@@ -30,7 +30,7 @@ public class Inmueble {
 	}
 
 	public String getCiudad() {
-		return ciudad;
+		return this.ciudad;
 	}
 
 	public Direccion getDireccion() {

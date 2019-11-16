@@ -23,7 +23,7 @@ public class Reserva {
 	}
 
 	public Publicacion getPublicacion() {
-		return publicacion;
+		return this.publicacion;
 	}
 
 	public Usuario getInquilino() {

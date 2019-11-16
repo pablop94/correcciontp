@@ -15,7 +15,7 @@ class AdministradorDeSitioTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		sitio = Sitio.getInstance();
+		sitio = new Sitio();
 		administradorDeSitio = new AdministradorDeSitio(sitio);
 	}
 
