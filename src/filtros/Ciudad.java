@@ -16,6 +16,12 @@ public class Ciudad extends Filtro {
 
 	@Override
 	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
+		/*acá hay dos cosas mal: 
+		modificar un parámetro no está bueno
+		acceder a publicacion.getInmueble().getCiudad().equals(this.ciudad) es violar encapsulamiento. Lo correcto sería: 
+			tener un método en publicacion que se llame esDeLaCiudad(ciudad) y internamente llame a su inmueble.esDeLaCiudad(ciudad)
+			y este ahí le pregunte a su ciudad si es igual a la que le pasaron por parámetro
+		*/
 		publicaciones = publicaciones.stream().filter(publicacion -> publicacion.getInmueble().getCiudad().equals(this.ciudad)).collect(Collectors.toList());
 		return publicaciones;
 	}

@@ -73,6 +73,7 @@ public class Usuario {
 	}
 	
 	public void notificarReservaPendiente(Reserva reserva) {
+		//Acá puede hacerse this.sitio.enviarMail() entonces el sitio se encarga de saber cómo enviarlo y no accedes a su servidor de mails
 		this.sitio.getServidorMail().enviarMail(this.getEmail(), 
 				"Tenes una nueva reserva!", 
 				"El usuario " + reserva.getInquilino().getNombre() + 
@@ -80,6 +81,7 @@ public class Usuario {
 	}
 	
 	public void notificarReservaConcretada(Reserva reserva) {
+		// idem anterior
 		this.sitio.getServidorMail().enviarMail(this.getEmail(), 
 				"Tu reserva se confirmo!", 
 				"El usuario " + reserva.getPublicacion().getPropietario().getNombre() + " acepto tu reserva!");

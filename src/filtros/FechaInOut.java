@@ -19,6 +19,7 @@ public class FechaInOut extends Filtro {
 
 	@Override
 	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
+		//idem, modificar parametro no está bueno
 		publicaciones = publicaciones.stream().filter(publicacion -> ( (publicacion.estaDentroDeFecha(checkIn, checkOut)) && (publicacion.puedeReservarseEn(checkIn, checkOut)) )).collect(Collectors.toList());
 		return publicaciones;
 	}

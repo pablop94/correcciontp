@@ -16,6 +16,7 @@ public class FiltroCompuesto extends Filtro {
 	
 	@Override
 	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
+		//idem, crear una nueva lista
 		for (Filtro unFiltro: filtros) {
 			publicaciones = unFiltro.filtrarPublicaciones(publicaciones);
 		}
